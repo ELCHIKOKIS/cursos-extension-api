@@ -20,8 +20,26 @@ const inscripcionSchema = new mongoose.Schema(
     estado: {
       type: String,
       required: true,
-      enum: ['Confirmada', 'Cancelada', 'Pendiente'],
+      enum: ['Confirmada', 'Inscrito', 'Cancelada', 'Pendiente'],
       default: 'Pendiente'
+    },
+    comprobante: {
+      archivo_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: null
+      },
+      nombre_archivo: {
+        type: String,
+        trim: true
+      },
+      tipo_contenido: {
+        type: String,
+        enum: ['application/pdf', 'image/jpeg', 'image/png']
+      },
+      tamano_bytes: {
+        type: Number,
+        min: 1
+      }
     }
   },
   { timestamps: true }

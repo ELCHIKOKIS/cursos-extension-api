@@ -3,14 +3,17 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('node:path');
 
 const cursosRoutes = require('./routes/cursos');
 const participantesRoutes = require('./routes/participantes');
 const inscripcionesRoutes = require('./routes/inscripciones');
 const salonesRoutes = require('./routes/salones');
 const asignacionesRoutes = require('./routes/asignaciones');
+const authRoutes = require('./routes/auth');
 
 const app = express();
+const publicDirectory = path.join(__dirname, '..', 'public');
 const port = Number(process.env.PORT) || 3000;
 const mongoUri = process.env.MONGODB_URI;
 
@@ -19,6 +22,15 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   if (!['POST', 'PUT', 'PATCH'].includes(req.method)) {
+    return next();
+  }
+
+  const isReceiptUpload = req.method === 'POST' &&
+    req.path === '/api/inscripciones' &&
+    req.is('multipart/form-data');
+  const isApprovalAction = req.method === 'PATCH' &&
+    /^\/api\/inscripciones\/[^/]+\/(?:aprobar|cancelar)$/.test(req.path);
+  if (isReceiptUpload || isApprovalAction) {
     return next();
   }
 
@@ -38,6 +50,12 @@ app.use('/api/participantes', participantesRoutes);
 app.use('/api/inscripciones', inscripcionesRoutes);
 app.use('/api/salones', salonesRoutes);
 app.use('/api/asignaciones', asignacionesRoutes);
+app.use('/api/auth', authRoutes);
+
+app.get('/app', (req, res) => {
+  res.sendFile(path.join(publicDirectory, 'index.html'));
+});
+app.use('/app', express.static(publicDirectory));
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Ruta no encontrada' });
@@ -46,6 +64,10 @@ app.use((req, res) => {
 app.use((error, req, res, next) => {
   if (res.headersSent) {
     return next(error);
+  }
+
+  if (error.name === 'MulterError') {
+    return res.status(400).json({ error: 'El comprobante supera el límite permitido o el formulario no es válido' });
   }
 
   if (error.code === 11000) {

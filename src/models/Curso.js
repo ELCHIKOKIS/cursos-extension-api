@@ -32,6 +32,11 @@ const cursoSchema = new mongoose.Schema(
       required: true,
       trim: true
     },
+    docente_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Participante',
+      default: null
+    },
     estado: {
       type: String,
       required: true,

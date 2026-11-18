@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f2">
+    <meta name="description" content="Explora cursos, solicita tu inscripción y administra las solicitudes de pago.">
+    <title>Aula Abierta | Cursos de extensión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/app/styles.css">
+    <script src="/app/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/app" aria-label="Aula Abierta, inicio">
+        <span class="brand-mark" aria-hidden="true">a.</span>
+        <span>Aula<span class="brand-light">Abierta</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <button class="nav-link active" data-view="courses">Explorar cursos</button>
+        <button class="nav-link" data-view="enroll">Inscribirme</button>
+        <button class="nav-link" data-view="account">Mi espacio</button>
+      </nav>
+      <a class="top-action" href="#catalog">Encuentra tu próximo curso <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir navegación" aria-expanded="false">☰</button>
+    </header>
+
+    <main>
+      <section class="view active" id="coursesView">
+        <section class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="live-dot"></span> APRENDER TE ABRE CAMINOS</div>
+            <h1>Aprende algo<br>que te <em>mueva.</em></h1>
+            <p class="hero-description">Ideas nuevas, habilidades para el mundo real y una comunidad que crece contigo. Tu siguiente paso empieza aquí.</p>
+            <button class="button button-dark hero-button" data-view="enroll">Encuentra tu curso <span aria-hidden="true">↗</span></button>
+            <div class="hero-proof">
+              <div class="avatar-stack" aria-hidden="true"><span>ML</span><span>JR</span><span>CV</span><b>+</b></div>
+              <div><strong>Aprendizaje con propósito</strong><small>Formación para lo que viene</small></div>
+            </div>
+          </div>
+          <div class="hero-art" aria-label="Ilustración de una estudiante leyendo">
+            <div class="art-orbit orbit-one"></div>
+            <div class="art-orbit orbit-two"></div>
+            <div class="art-sun"></div>
+            <div class="art-book"><span></span><span></span><span></span></div>
+            <div class="art-plant"><i></i><i></i><i></i><b></b></div>
+            <div class="art-person"><div class="person-hair"></div><div class="person-face"></div><div class="person-body"></div><div class="person-arm"></div></div>
+            <div class="art-note"><span>✦</span> Un paso a la vez</div>
+            <div class="art-label">Ideas que florecen <span>✳</span></div>
+          </div>
+          <div class="hero-index">01 <span>/</span> 03</div>
+        </section>
+
+        <section class="catalog section-wrap" id="catalog">
+          <div class="section-heading">
+            <div><div class="eyebrow">TU SIGUIENTE CAPÍTULO</div><h2>Un mundo por <em>descubrir.</em></h2></div>
+            <p>Encuentra ese curso que conecta con tus ideas<br class="desktop-only"> y te acerca a tus metas.</p>
+          </div>
+          <div class="catalog-toolbar">
+            <label class="search-box"><span aria-hidden="true">⌕</span><input id="courseSearch" type="search" placeholder="¿Qué te gustaría aprender?" autocomplete="off"></label>
+            <div class="filter-chips" id="courseFilters" aria-label="Filtrar cursos">
+              <button class="filter-chip selected" data-filter="Todos">Todos los cursos</button>
+              <button class="filter-chip" data-filter="Curso">Cursos</button>
+              <button class="filter-chip" data-filter="Diplomado">Diplomados</button>
+              <button class="filter-chip" data-filter="Taller">Talleres</button>
+              <button class="filter-chip" data-filter="Seminario">Seminarios</button>
+            </div>
+          </div>
+          <div class="course-grid" id="courseGrid" aria-live="polite">
+            <div class="loading-card">Estamos preparando algo bueno para ti…</div>
+          </div>
+          <div class="catalog-footer"><span id="courseCount">—</span><span>Hecho para aprender a tu manera <span aria-hidden="true">✳</span></span></div>
+        </section>
+
+        <section class="closing-banner section-wrap">
+          <div class="closing-spark">✳</div>
+          <div><div class="eyebrow">EL PRIMER PASO CUENTA</div><h2>Lo que aprenderás<br>te llevará <em>más lejos.</em></h2></div>
+          <button class="button button-light" data-view="enroll">Quiero empezar <span aria-hidden="true">↗</span></button>
+          <span class="banner-decoration" aria-hidden="true">a.</span>
+        </section>
+      </section>
+
+      <section class="view section-wrap form-view" id="enrollView">
+        <div class="page-heading"><div class="eyebrow">TU SIGUIENTE PASO</div><h1>Empieza a <em>aprender.</em></h1><p>Elige tu curso y cuéntanos quién eres. Adjunta tu comprobante para enviar la solicitud.</p></div>
+        <div class="form-layout">
+          <form class="panel form-panel" id="enrollmentForm">
+            <div class="form-step"><span>01</span><div><h2>Elige tu curso</h2><p>Encuentra el que más conecta contigo.</p></div></div>
+            <label>Curso<select name="curso_id" id="enrollmentCourse" required><option value="">Cargando cursos…</option></select></label>
+            <div class="form-step"><span>02</span><div><h2>Comprobante de pago</h2><p>Tu solicitud quedará pendiente hasta su revisión.</p></div></div>
+            <label class="upload-box" for="receiptFile">
+              <span class="upload-icon" aria-hidden="true">↑</span><strong id="receiptLabel">Selecciona tu comprobante</strong>
+              <small>PDF, JPG o PNG · Máximo 5 MB</small>
+              <input id="receiptFile" name="comprobante" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" required>
+            </label>
+            <p class="form-message" id="enrollmentMessage" role="status"></p>
+            <button class="button button-dark button-wide" type="submit">Enviar solicitud <span aria-hidden="true">↗</span></button>
+            <p class="privacy-note">Debes <button class="text-button" type="button" data-view="account">iniciar sesión o crear una cuenta de estudiante</button> antes de enviar.</p>
+            <p class="privacy-note">Tu inscripción aparecerá como <strong>Pendiente</strong> hasta que administración confirme el pago.</p>
+          </form>
+          <aside class="enroll-aside">
+            <div class="aside-illustration"><div class="aside-circle">✦</div><div class="aside-leaf leaf-a"></div><div class="aside-leaf leaf-b"></div><div class="aside-book">A</div></div>
+            <div class="aside-copy"><div class="eyebrow">CADA IDEA TIENE UN COMIENZO</div><h2>Lo bueno empieza con un <em>sí.</em></h2><p>Cuando envíes tu comprobante, revisaremos tu solicitud. Te esperamos del otro lado.</p></div>
+            <div class="aside-note"><span>✓</span> Tu progreso empieza hoy</div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view section-wrap admin-view" id="accountView">
+        <div class="page-heading"><div class="eyebrow">AULA ABIERTA</div><h1>Tu espacio para <em>crecer.</em></h1><p>Inicia sesión como estudiante, docente o administrador para continuar.</p></div>
+        <div class="admin-login panel" id="authPanel">
+          <div class="login-symbol">a.</div><div><h2>Inicia sesión</h2><p>Estudiantes, docentes y administradores usan este acceso.</p></div>
+          <form id="loginForm"><label>Correo<input name="email" type="email" required autocomplete="username" maxlength="254" placeholder="tu@correo.com"></label><label>Contraseña<input name="password" type="password" required autocomplete="current-password" placeholder="Tu contraseña"></label><p class="form-message" id="loginMessage" role="status"></p><button class="button button-dark" type="submit">Iniciar sesión <span aria-hidden="true">↗</span></button></form>
+          <div class="auth-divider"><span>O crea tu cuenta de estudiante</span></div>
+          <form id="studentRegisterForm"><label>Nombre completo<input name="nombre" required maxlength="100" autocomplete="name" placeholder="Ej. María García"></label><label>Correo electrónico<input name="email" type="email" required maxlength="254" autocomplete="email" placeholder="tu@correo.com"></label><label>Contraseña<input name="password" type="password" required minlength="12" maxlength="128" autocomplete="new-password" placeholder="Mínimo 12 caracteres"></label><p class="form-message" id="registerMessage" role="status"></p><button class="button button-outline" type="submit">Crear cuenta de estudiante</button></form>
+        </div>
+        <div class="admin-workspace hidden" id="adminWorkspace">
+          <div class="admin-toolbar"><div class="admin-identity"><span class="admin-avatar" id="userAvatar">A</span><div><strong id="userName">Mi cuenta</strong><small id="userRole">Sesión activa</small></div></div><button class="button button-outline" id="logoutButton">Cerrar sesión</button></div>
+          <div class="admin-tabs" id="workspaceTabs">
+            <button class="admin-tab active" data-admin-panel="requestsPanel" data-role="admin">Solicitudes <span id="pendingBadge">0</span></button>
+            <button class="admin-tab" data-admin-panel="createPanel" data-role="staff">Cursos</button>
+            <button class="admin-tab" data-admin-panel="rosterPanel" data-role="staff">Participantes</button>
+            <button class="admin-tab" data-admin-panel="teachersPanel" data-role="admin">Docentes</button>
+            <button class="admin-tab" data-admin-panel="studentPanel" data-role="estudiante">Mis inscripciones</button>
+          </div>
+          <section class="admin-panel active" id="requestsPanel" data-role="admin">
+            <div class="admin-panel-heading"><div><h2>Inscripciones por revisar</h2><p>Selecciona un curso para ver sus solicitudes pendientes.</p></div><button class="button button-outline" id="refreshRequests">↻ Actualizar</button></div>
+            <label class="course-select-label">Curso<select id="adminCourse"><option value="">Cargando cursos…</option></select></label>
+            <div class="request-list" id="requestList"><div class="empty-state">Selecciona un curso para consultar sus solicitudes.</div></div>
+          </section>
+          <section class="admin-panel" id="createPanel" data-role="staff">
+            <div class="admin-panel-heading"><div><h2 id="courseFormTitle">Crear un curso</h2><p id="courseFormDescription">Publica un curso y asígnalo a un docente registrado.</p></div></div>
+            <label class="course-select-label admin-course-edit-label">Editar curso<select id="manageCourse"><option value="">Crear un curso nuevo</option></select></label>
+            <form class="panel create-form" id="courseForm">
+              <div class="form-row"><label>Nombre del curso<input name="nombre" required maxlength="120" placeholder="Ej. Introducción al diseño"></label><label>Tipo<select name="tipo" required><option value="">Selecciona un tipo</option><option>Curso</option><option>Diplomado</option><option>Seminario</option><option>Taller</option></select></label></div>
+              <div class="form-row"><label>Duración (horas)<input name="duracion_horas" type="number" min="1" step="1" required placeholder="24"></label><label>Cupo máximo<input name="cupo_maximo" type="number" min="1" step="1" required placeholder="20"></label></div>
+              <div class="form-row"><label>Modalidad<select name="modalidad" required><option value="">Selecciona modalidad</option><option>Presencial</option><option>Virtual</option></select></label><label>Docente<select name="docente_id" id="teacherSelect" required><option value="">Cargando docentes…</option></select></label></div>
+              <label class="course-status-label hidden">Estado del curso<select name="estado"><option value="Activo">Activo</option><option value="Inactivo">Inactivo</option></select></label>
+              <p class="form-message" id="courseMessage" role="status"></p><div class="form-actions"><button class="button button-dark" id="saveCourseButton" type="submit">Publicar curso <span aria-hidden="true">↗</span></button><button class="button button-outline hidden" id="deleteCourseButton" type="button">Eliminar curso</button></div>
+            </form>
+          </section>
+          <section class="admin-panel" id="rosterPanel" data-role="staff">
+            <div class="admin-panel-heading"><div><h2>Participantes por curso</h2><p>Consulta estudiantes inscritos y actualiza sus nombres de perfil.</p></div></div>
+            <label class="course-select-label">Curso<select id="rosterCourse"><option value="">Selecciona un curso</option></select></label>
+            <div class="request-list" id="rosterList"><div class="empty-state">Selecciona un curso para consultar sus participantes.</div></div>
+          </section>
+          <section class="admin-panel" id="studentPanel" data-role="estudiante">
+            <div class="admin-panel-heading"><div><h2>Mis inscripciones</h2><p>Consulta el estado de tus solicitudes o cancela una inscripción.</p></div><button class="button button-outline" id="refreshStudentEnrollments">↻ Actualizar</button></div>
+            <div class="request-list" id="studentEnrollmentList"><div class="empty-state">Cargando tus inscripciones…</div></div>
+          </section>
+          <section class="admin-panel" id="teachersPanel" data-role="admin">
+            <div class="admin-panel-heading"><div><h2>Equipo docente</h2><p>Registra docentes para tenerlos disponibles al crear un curso.</p></div></div>
+            <form class="panel create-form" id="teacherForm">
+              <div class="form-row"><label>Nombre completo<input name="nombre" required maxlength="100" placeholder="Ej. Laura Méndez"></label><label>Correo electrónico<input name="email" type="email" required maxlength="254" placeholder="docente@institucion.edu"></label></div>
+              <label>Contraseña inicial<input name="password" type="password" required minlength="12" maxlength="128" autocomplete="new-password" placeholder="Mínimo 12 caracteres"></label>
+              <p class="form-message" id="teacherMessage" role="status"></p><button class="button button-dark" type="submit">Registrar docente <span aria-hidden="true">↗</span></button>
+            </form>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><a class="brand footer-brand" href="/app"><span class="brand-mark">a.</span><span>Aula<span class="brand-light">Abierta</span></span></a><span>Aprender cambia lo que viene. <span aria-hidden="true">✳</span></span><span>© <span id="year"></span> Aula Abierta</span></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
