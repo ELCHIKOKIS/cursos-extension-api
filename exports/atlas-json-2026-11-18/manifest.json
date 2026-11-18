@@ -1,0 +1,61 @@
+{
+  "exportedAt": "2026-11-18T21:02:36.332Z",
+  "format": "MongoDB Extended JSON v2; importable with mongoimport --jsonArray",
+  "privacy": "Credential-like fields and comprobante references/metadata are omitted. GridFS payment proof collections are not exported.",
+  "collections": [
+    {
+      "name": "salons",
+      "file": "salons.json",
+      "records": 10,
+      "omittedFieldNames": []
+    },
+    {
+      "name": "participantes",
+      "file": "participantes.json",
+      "records": 16,
+      "omittedFieldNames": [
+        "passwordHash"
+      ]
+    },
+    {
+      "name": "cursos",
+      "file": "cursos.json",
+      "records": 11,
+      "omittedFieldNames": []
+    },
+    {
+      "name": "usuarios",
+      "file": "usuarios.json",
+      "records": 5,
+      "omittedFieldNames": [
+        "password"
+      ]
+    },
+    {
+      "name": "asignacions",
+      "file": "asignacions.json",
+      "records": 10,
+      "omittedFieldNames": []
+    },
+    {
+      "name": "inscripcions",
+      "file": "inscripcions.json",
+      "records": 16,
+      "omittedFieldNames": [
+        "comprobante"
+      ]
+    }
+  ],
+  "excludedCollections": [
+    {
+      "name": "comprobantes_pago.chunks",
+      "records": 2,
+      "reason": "Contains uploaded payment proof files or binary chunks"
+    },
+    {
+      "name": "comprobantes_pago.files",
+      "records": 2,
+      "reason": "Contains uploaded payment proof files or binary chunks"
+    }
+  ]
+}
